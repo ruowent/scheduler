@@ -3,6 +3,8 @@ import DayList from "./DayList";
 import Appointment from "components/Appointment";
 import axios from "axios";
 import "./Application.scss";
+import { getAppointmentsForDay } from "helpers/selectors";
+
 
 // const appointments = [
 //   {
@@ -44,23 +46,28 @@ export default function Application(props) {
   const [state, setState] = useState({
     day: "Monday",
     days: [],
-    // you may put the line below, but will have to remove/comment hardcoded appointments variable
     appointments: {}
   });
+
   const setDay = day => setState({ ...state, day });
-  const setDays = (days) => {
-    setState(prev => ({ ...prev, days }))
-  }
+  // const setDays = (days) => {
+  //   setState(prev => ({ ...prev, days }))
+  // }
+
+  // useEffect(() => {
+  //   axios.get("/api/days").then(response => setDays(response.data));
+  // }, []);
 
   useEffect(() => {
-    const URL = 'http://localhost:8001/api/days';
-    axios.get(URL).then(response => {
-      setDays([...response.data]);
-    });
-  }, [])
+    const getDays = axios.get('/api/days');
+    const getAppointments = axios.get('/api/appointments');
 
-  useEffect(() => {
-    axios.get("/api/days").then(response => setDays(response.data));
+    Promise.all([getDays, getAppointments])
+      .then((all) => {
+        console.log(all);
+        setState(prev => ({ ...prev, days: all[0].data, appointments: all[1].data }));
+      })
+
   }, []);
 
   return (
@@ -86,12 +93,12 @@ export default function Application(props) {
         />
       </section>
       <section className="schedule">
-        {/* {state.appointments.map(appointment => {
+        {getAppointmentsForDay(state, state.day).map(appointment => {
           return (
             <Appointment key={appointment.id} {...appointment} />
           )
         })
-        } */}
+        }
         <Appointment key="last" time="6pm" />
       </section>
     </main>
