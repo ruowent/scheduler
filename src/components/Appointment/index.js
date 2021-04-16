@@ -13,7 +13,16 @@ export default function Appointment(props) {
   const { mode, transition, back } = useVisualMode(
     props.interview ? SHOW : EMPTY
   );
-  console.log("interviewer prop", props.interviewers)
+  // Will be used in the Form component 
+  const save = (name, interviewer) => {
+    const interview = {
+      student: name,
+      interviewer
+    };
+    props.
+      bookInterview(props.id, interview);
+
+  }
   return (
     <article className="appointment">
       <Header time={props.time} />

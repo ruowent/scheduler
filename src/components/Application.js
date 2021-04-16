@@ -14,6 +14,10 @@ export default function Application(props) {
   });
 
   const setDay = day => setState({ ...state, day });
+  // Change the local state when interview is booked
+  const bookInterview = (id, interview) => {
+    console.log(id, interview);
+  }
 
   useEffect(() => {
     const getDays = axios.get('/api/days');
@@ -58,8 +62,10 @@ export default function Application(props) {
           const interviewers = getInterviewersForDay(state, state.day)
           return (
             <Appointment
-              key={appointment.id} {...appointment} interview={interview}
-              interviewers={interviewers} />
+              key={appointment.id} {...appointment}
+              interview={interview}
+              interviewers={interviewers}
+              bookInterview={bookInterview} />
           )
         })
         }
