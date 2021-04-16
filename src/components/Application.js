@@ -16,8 +16,18 @@ export default function Application(props) {
   const setDay = day => setState({ ...state, day });
   // Change the local state when interview is booked
   const bookInterview = (id, interview) => {
+    const appointment = {
+      ...state.appointments[id],
+      interview: { ...interview }
+    };
+    const appointments = {
+      ...state.appointments,
+      [id]: appointment
+    };
     console.log(id, interview);
+    setState({ ...state, appointments });
   }
+
 
   useEffect(() => {
     const getDays = axios.get('/api/days');
