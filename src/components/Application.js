@@ -25,9 +25,18 @@ export default function Application(props) {
       [id]: appointment
     };
     console.log(id, interview);
-    setState({ ...state, appointments });
-  }
 
+    // Update database with the interview data
+
+    return axios.put(`http://localhost:8001/api/appointments/${id}`, { interview })
+      .then(() => {
+        setState({
+          ...state,
+          appointments
+        });
+      })
+      .catch(err => console.error(err))
+  }
 
   useEffect(() => {
     const getDays = axios.get('/api/days');
