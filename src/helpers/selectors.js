@@ -12,7 +12,7 @@ export function getInterview(state, interview) {
     return null;
   }
   for (let id in state.interviewers) {
-    if (interview.interviewer == id) {
+    if (interview.interviewer === id) {
       interview.interviewer = state.interviewers[id];
     }
   }
