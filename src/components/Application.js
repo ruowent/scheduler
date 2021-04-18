@@ -32,8 +32,7 @@ export default function Application(props) {
           ...state,
           appointments
         });
-      })
-      .catch(err => console.error(`Error saving appointment on api, error msg = ${err}`));
+      });
   }
 
   const cancelInterview = (id) => {
@@ -51,8 +50,7 @@ export default function Application(props) {
           ...state,
           appointments
         });
-      })
-      .catch(err => console.error(`Error deleting appointment on api, error msg = ${err}`));
+      });
   }
 
   useEffect(() => {
@@ -94,8 +92,8 @@ export default function Application(props) {
       </section>
       <section className="schedule">
         {getAppointmentsForDay(state, state.day).map(appointment => {
-          const interview = getInterview(state, appointment.interview)
-          const interviewers = getInterviewersForDay(state, state.day)
+          const interview = getInterview(state, appointment.interview);
+          const interviewers = getInterviewersForDay(state, state.day);
           return (
             <Appointment
               key={appointment.id} {...appointment}
