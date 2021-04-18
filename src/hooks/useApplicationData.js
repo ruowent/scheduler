@@ -7,8 +7,23 @@ export default function useApplicationData() {
     days: [],
     appointments: {}
   });
-
   const setDay = day => setState({ ...state, day });
+  const spotRemaining = (id, spotChanged) => {
+    const days = [...state.days];
+    const spotTaken = state.appointments[id].interview;
+    for (const day of days) {
+      if (spotChanged > 0 || (spotChanged < 0 && !spotTaken)) {
+        if (day.appointments.find(appointment => appointment === id)) {
+          day.spots += spotChanged;
+          console.log("state.days", days)
+          setState(prev => {
+            return { ...prev, days }
+          })
+        }
+      }
+    }
+  };
+
   // Change the local state when interview is booked
   const bookInterview = (id, interview) => {
     const appointment = {
@@ -19,7 +34,6 @@ export default function useApplicationData() {
       ...state.appointments,
       [id]: appointment
     };
-
     // Update database with the interview data
     return axios.put(`/api/appointments/${id}`, { interview })
       .then(() => {
@@ -27,6 +41,7 @@ export default function useApplicationData() {
           ...state,
           appointments
         });
+        spotRemaining(id, -1);
       });
   }
 
@@ -45,6 +60,7 @@ export default function useApplicationData() {
           ...state,
           appointments
         });
+        spotRemaining(id, 1);
       });
   }
 
