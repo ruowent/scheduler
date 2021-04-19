@@ -44,8 +44,7 @@ export default function Appointment(props) {
       .then(() => transition(EMPTY))
       .catch(err => {
         console.error(`Error on delete appointment action, err msg = ${err}`);
-        // only works when true is removed from below statement
-        transition(ERROR_DELETE);
+        transition(ERROR_DELETE, true);
       });
   }
 
