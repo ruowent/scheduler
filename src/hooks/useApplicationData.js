@@ -15,7 +15,6 @@ export default function useApplicationData() {
       if (spotChanged > 0 || (spotChanged < 0 && !spotTaken)) {
         if (day.appointments.find(appointment => appointment === id)) {
           day.spots += spotChanged;
-          console.log("state.days", days)
           setState(prev => {
             return { ...prev, days }
           })
