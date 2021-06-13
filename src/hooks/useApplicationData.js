@@ -44,7 +44,9 @@ export default function useApplicationData() {
           days: newDays,
         };
       default:
-        console.error(`Tried to reduce with unsupported action type: ${type}`)
+        throw new Error(
+          `Tried to reduce with unsupported action type: ${type}`
+        );
     }
   }
   const [state, dispatch] = useReducer(reducer, {
