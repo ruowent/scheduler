@@ -18,8 +18,8 @@
 Scheudler is a full-stack, single-page React application that allows users to book and cancel interviews. Real-time interview schedules are updated via Websocket.
 
 ## 🖥 Tech Stack
-<b>Development</b>: ReactJS, CSS/SASS, Node.js, Express, PostgreSQL
-<b>Tools & Testing</b>: Storybook, Jest, Cypress
+<b>Development</b>: ReactJS, CSS/SASS, Node.js, Express, PostgreSQL<br />
+<b>Tools & Testing</b>: Storybook, Jest, Cypress<br />
 <b>Deployment</b>: Heroku (database API), CircleCI (continuous integration), Netlify (production client)
 
 ## 🎥 Demo
