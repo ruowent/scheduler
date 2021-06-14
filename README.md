@@ -7,13 +7,15 @@
 
 [![CircleCI Build Status](https://circleci.com/gh/ruowent/scheduler.svg?style=shield)](https://circleci.com/gh/ruowent/scheduler)
 
-<p>Scheudler is a full-stack, single-page React application that allows users to book and cancel interviews. Real-time interview schedules are updated via Websocket.</p>
-
 <b><a href="https://ruowent-interview-scheduler.netlify.app/" target="_blank">
    Check out my app here
 </a></b>
 <p>(Please allow 20 seconds for Heroku to initialize)</p>
 </div>
+
+## 📖 Introduction
+
+Scheudler is a full-stack, single-page React application that allows users to book and cancel interviews. Real-time interview schedules are updated via Websocket.
 
 ## 🖥 Tech Stack
 <b>Development</b>: ReactJS, CSS/SASS, Node.js, Express, PostgreSQL
